@@ -1,0 +1,22 @@
+<button id="shareButton">Share This Page</button>
+
+<script>
+    const shareButton = document.getElementById('shareButton')
+
+    shareButton.addEventListener('click', async () => {
+        if (navigator.share) {
+            try {
+                await navigator.share({
+                    title: 'Check out this page!',
+                    text: 'This is a really interesting page you should see.',
+                    url: window.location.href, // Shares the current page URL
+                })
+                console.log('Content shared successfully')
+            } catch (error) {
+                console.error('Error sharing content:', error)
+            }
+        } else {
+            alert('Web Share API not supported on this browser.')
+        }
+    })
+</script>
